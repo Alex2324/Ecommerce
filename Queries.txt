@@ -1,0 +1,49 @@
+1. Find and List most popular Items sold and list 1. Most popular to Nth. least popular
+	SELECT 
+		ItemName
+	FROM
+		ITEM
+	GROUP BY 
+		ItemName
+	ORDER BY
+		SUM(Quantity) DESC;
+		
+2. Find most expensive sale.
+	SELECT 
+		MAX(DollarAmount) AS LargestSaleAmount
+	FROM 
+		SALESFACT;
+
+3. Find the Average cost of the sales
+	SELECT 
+		AVG(DollarAmount) AS AvgSaleAmnt
+	FROM 
+		SALESFACT;
+
+4. Find the Total dollars in sale
+	SELECT 
+		SUM(DollarAmount) AS TtlSaleAmnt
+	FROM 
+		SALESFACT;
+
+5. Select total dollar amounts within each active* month of each active* year.
+	
+	SELECT YEAR(saletime) AS SalesYear,
+         MONTH(saletime) AS SalesMonth,
+         SUM(dollaramount) AS TotalSales
+	FROM Salesfact
+
+	GROUP BY YEAR(saletime), MONTH(saletime)
+	ORDER BY YEAR(saletime), MONTH(saletime);
+
+6. Select Total items sold within each active* month of each active year.
+	SELECT YEAR(saletime) AS SalesYear,
+         MONTH(saletime) AS SalesMonth,
+         SUM(ItemsSold) AS TotalItems
+	FROM Salesfact
+
+	GROUP BY YEAR(saletime), MONTH(saletime)
+	ORDER BY YEAR(saletime), MONTH(saletime);
+
+- Active being which ever months sales have been made, could have put
+	down every month but I feel the ones without any sales would clutter the display with zeroes.
